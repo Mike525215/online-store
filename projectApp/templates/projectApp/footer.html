@@ -1,0 +1,42 @@
+
+
+{% load static %}
+<footer>
+  <div class="row">
+    <div class="col-sm-2">
+      <img src="{% static 'projectApp/img/logo.png' %}" alt="" style="position: relative; top: 20px; left: 15px;">
+    </div>
+    <div class="col-sm-3">
+      <ul style="position: relative; top: 30px;">
+        <li style="list-style: none;"><a href="{% url 'favorites' %}" style="text-decoration: none; color: #000000;">FAVORITES</a></li>
+        <li style="list-style: none;"><a href="{% url 'cart' %}" style="text-decoration: none; color: #000000;">CART</a></li>
+        <li style="list-style: none;"><a href="#" style="text-decoration: none; color: #000000;">CONTACTS</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-4">
+      <h5 style="position: relative; top: 30px;">Terms of service</h5>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-sm-2">
+          <img src="{% static 'projectApp/img/VK.png' %}" alt="">
+        </div>
+        <div class="col-sm-2">
+          <img src="{% static 'projectApp/img/Instagram.png' %}" alt="">
+        </div>
+        <div class="col-sm-2">
+          <img src="{% static 'projectApp/img/Telegram.png' %}" alt="">
+        </div>
+        <div class="col-sm-2">
+          <img src="{% static 'projectApp/img/Whatsapp.png' %}" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <h6 style="position: relative; top: 34px;">QPICK © 2012 - 2022</h6>
+    </div>
+  </div>
+</footer>
+
+
+

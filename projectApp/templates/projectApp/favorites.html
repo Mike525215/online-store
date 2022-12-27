@@ -1,0 +1,63 @@
+{% extends 'projectApp/base.html' %}
+{% load static %}
+{% block sidebar %}
+    <div class="sidebar">
+        {% if favorites %}
+        <br>
+        <span style="position: relative; left: 20px; color: #838383; font-size: 25px;">{{ title }}</span>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row gy-5">
+                    {% for x in items %}
+                        <div class="col-xs-12 col-md-6 col-lg-4">
+                            <div class="card" style="width: 21rem;">
+                                <br>
+                                <form action="{% url 'del_favorite_item' %}" style="width: 90%; display: flex; justify-content: flex-end; margin: 0 auto;">
+                                    <input type="hidden" name="item_id" value="{{ x.item.id }}">
+                                    <button type="submit" style="border: 0; background: #fff;">
+                                        <img src="{% static 'projectApp/img/Vector.png' %}" alt="" width="23" height="23">
+                                    </button>
+                                </form>
+                              <a href="{{ x.item.get_absolute_url }}" style="text-align: center;">
+                                {% if 'IPHONE' in x.item.title %}
+                                    <img src="{{ x.item.image.url }}" class="card-img-top" alt="..." style="width: 115px;
+                                                                                                       height: 200px;
+                                                                                                       margin: 0 auto;">
+                                {% else %}
+                                    <img src="{{ x.item.image.url }}" class="card-img-top" alt="..." style="width: 196px;
+                                                                                                               height: 200px;
+                                                                                                               margin: 0 auto;">
+                                {% endif %}
+                            </a>
+                              <div class="card-body">
+                                  <div class="row">
+                                      <div class="col-sm-9">
+                                        <span class="card-text" style="text-align: left; font-size: 15px;">{{ x.item.title }}</span>
+                                      </div>
+                                      <div class="col-sm-3">
+                                        <p class="card-text" style="text-align: right; color: #FFA542;">{{ x.item.price }}$</p>
+                                      </div>
+                                 </div>
+                              </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+            </div>
+        </div>
+        {% else %}
+            <div class="cart" style="text-align: center; position: relative; top: 80px;">
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" color="#000000" fill="currentColor" class="bi bi-bag-heart" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5Zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0ZM14 14V5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1ZM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+                    </svg>
+                </a>
+                <br>
+                <br>
+                <h6 class="card-text" style="color: #AAAAAA;">Unfortunately, your favorites are currently empty :(</h6>
+                <a href="{% url 'home' %}" class="btn btn-dark" style="border-radius: 25px; width: 540px; font-size: 20px;">Go back to the catalog</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'projectApp/base.html' %}
+{% load static %}
+
+{% block header_below %}
+    <div class="header_below">
+        <span style="text-align: center;">ACCESSORIES FOR<br>IPHONES AND AIRPODS</span>
+        <img src="{% static 'projectApp/img/iphones.png' %}" height="236px" alt="">
+    </div>
+{% endblock %}
+{% block sidebar %}
+    {% include 'projectApp/sidebar.html' %}
+{% endblock %}
+
+{% block footer %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+    {% include 'projectApp/footer.html' %}
+{% endblock %}

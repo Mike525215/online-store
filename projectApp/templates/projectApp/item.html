@@ -1,0 +1,52 @@
+{% extends 'projectApp/base.html' %}
+{% load static %}
+
+{% block sidebar %}
+    <div class="item">
+        <br>
+        <br>
+        <span style="position: relative; left: 20px; color: #838383; font-size: 25px;">{{ title }}</span>
+        <br>
+        <br>
+        <div class="card" style="width: 25rem;">
+            <br>
+            {% if 'IPHONE' in item.title %}
+                <img src="{{ item.image.url }}" class="card-img-top" alt="..." style="width: 160px;
+                                                                                      height: 300px;
+                                                                                      margin: 0 auto;">
+            {% else %}
+                <img src="{{ item.image.url }}" class="card-img-top" alt="..." style="width: 250px;
+                                                                                      height: 250px;
+                                                                                      margin: 0 auto;">
+            {% endif %}
+          <div class="card-body">
+             <div class="row">
+                 <div class="col-sm-9">
+                     <span class="card-text" style="text-align: left; font-size: 17.5px;">{{ item.title }}</span>
+                 </div>
+                 <div class="col-sm-3">
+                     <span class="card-text" style="position: relative; left: 25px; text-align: right; color: #FFA542; font-size: 17.5px;">{{ item.price }}$</span>
+                 </div>
+             </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="card" style="width: 25rem;">
+          <h5 class="card-header">Description and qualities</h5>
+          <div class="card-body">
+            <p class="card-text">{{ item.description|safe }}</p>
+          </div>
+        </div>
+        <div class="sidebar-buttons">
+            <form action="{% url 'add_item_cart' %}">
+                <input type="hidden" name="item_id" value="{{ item.id }}" width="1px">
+                <button type="submit" style="border: 0; background: #EAEAEA;">
+                    <img src="{% static 'projectApp/img/btn1.png'%}" alt="" width="75px" height="75px">
+                </button>
+                <img src="{% static 'projectApp/img/btn2.png'%}" alt="" width="215px" height="75px">
+                <img src="{% static 'projectApp/img/btn3.png'%}" alt="" width="75px" height="75px">
+            </form>
+        </div>
+    </div>
+{% endblock %}

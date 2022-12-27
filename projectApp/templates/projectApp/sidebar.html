@@ -1,0 +1,33 @@
+{% load static %}
+<br>
+<br>
+<div class="sidebar">
+    <span style="position: relative; left: 20px; color: #838383; font-size: 25px;">CATEGORIES</span>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row gy-5">
+            {% for x in categories %}
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <div class="card" style="width: 20rem; border-radius: 25px;">
+                        <br>
+                        <a href="{{ x.get_absolute_url }}" style="text-align: center;">
+                            {% if 'IPHONE' in x.name %}
+                                <img src="{{ x.image.url }}" class="card-img-top" alt="..." style="width: 115px;
+                                                                                                   height: 200px;
+                                                                                                   margin: 0 auto;">
+                            {% else %}
+                                <img src="{{ x.image.url }}" class="card-img-top" alt="..." style="width: 196px;
+                                                                                                           height: 200px;
+                                                                                                           margin: 0 auto;">
+                            {% endif %}
+                        </a>
+                        <div class="card-body">
+                            <h6 class="card-text" style="text-align: center;">{{ x.name }}</h6>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

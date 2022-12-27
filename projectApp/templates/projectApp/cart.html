@@ -1,0 +1,90 @@
+{% extends 'projectApp/base.html' %}
+{% load static %}
+{% block sidebar %}
+    <div class="sidebar">
+        {% if cart %}
+        <span style="position: relative; left: 20px; color: #838383; font-size: 25px;">{{ title }}</span>
+        <br>
+        <br>
+            <div class="row">
+                <div class="col-sm-7">
+                    {% for x in items %}
+                        <div class="card" style="width: 29rem; border-radius: 25px;">
+                            <br>
+                            <form action="{% url 'del_cart_item' %}" style="width: 90%; display: flex; justify-content: flex-end; margin: 0 auto;">
+                                <input type="hidden" name="item_id" value="{{ x.item.id }}">
+                                <button type="submit" style="border: 0; background: #fff;">
+                                    <img src="{% static 'projectApp/img/Vector.png'%}" alt="" width="23" height="23">
+                                </button>
+                            </form>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    {% if 'IPHONE' in x.item.title %}
+                                        <a href="{{ x.item.get_absolute_url }}" style="text-align: left; position: relative; left: 35px; top: -20px;">
+                                            <img src="{{ x.item.image.url }}" class="card-img-left" alt="..." style="width: 70px; height: 125px;">
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ x.item.get_absolute_url }}" style="text-align: left; position: relative; left: 5px; top: -20px;">
+                                            <img src="{{ x.item.image.url }}" class="card-img-left" alt="..." style="width: 125px; height: 125px;">
+                                        </a>
+                                    {% endif %}
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <form action="{% url 'count_item_down' %}">
+                                                <input type="hidden" name="item_id" value="{{ x.item.id }}" width="1px">
+                                                <button type="submit" style="border: 0; background: #fff; border-radius: 25px; position: relative; left: 1p;">
+                                                    <img src="{% static 'projectApp/img/-.png' %}" alt="" style="position: relative; left: 20px; top: -5px; width: 28px; height: 22px;">
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <h5 style="position: relative; left: 3px; color: #000000; top: -5px;">{{ x.count_item }}</h5>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <form action="{% url 'count_item_up' %}">
+                                                <input type="hidden" name="item_id" value="{{ x.item.id }}" width="1px">
+                                                <button type="submit" style="border: 0; background: #fff;">
+                                                    <img src="{% static 'projectApp/img/+.png' %}" alt="" style="position: relative; left: -2px; top: -5px; width: 28px; height: 22px;">
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8" style="position: relative; top: 20px;">
+                                    <h6>{{ x.item.title }}</h6>
+                                    <h6 style="color: #AAAAAA;">Price: {{ x.item.price }}$</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-5">
+                    <div class="card" style="width: 20rem; position: relative; left: 10px;">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h5 style="text-align: left; position: relative; left: 35px; top: 10px;">Total bill</h5>
+                            </div>
+                            <div class="col-sm-6">
+                                <h5 style="text-align: right; position: relative; right: 35px; top: 10px;">{{ total_bill }}$</h5>
+                            </div>
+                        </div>
+                        <hr>
+                      <div class="card-body" style="text-align: center; position: relative; top: 10px;">
+                        <a href="#" class="btn btn-dark" style="border-radius: 25px; width: 100%;">Go to pay for order</a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+        <div class="cart" style="text-align: center; position: relative; top: 80px;">
+            <a href="#"><img src="{% static 'projectApp/img/cart.png' %}" alt=""></a>
+            <br>
+            <br>
+            <h5>Корзина пуста</h5>
+            <h6 style="color: #AAAAAA;">Но это никогда не поздно исправить :)</h6>
+            <a href="{% url 'home' %}" class="btn btn-dark" style="border-radius: 25px; width: 540px; font-size: 20px;">Go back to the catalog</a>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
